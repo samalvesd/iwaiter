@@ -4,14 +4,20 @@ import app.iwaiter.entities.Garcom;
 
 public class GarcomDto {
 
-    private final Long id;
-    private final String nome;
-    private final String fotoPerfil;
+    private Long id;
+    private String nome;
+    private String fotoPerfil;
+
+    public GarcomDto() {
+    }
 
     public GarcomDto(Long id, String nome, String fotoPerfil) {
         this.id = id;
         this.nome = nome;
         this.fotoPerfil = fotoPerfil;
+    }
+
+    public GarcomDto(String nome, String fotoPerfil) {
     }
 
     public Long getId() { return id; }

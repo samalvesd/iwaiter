@@ -22,7 +22,6 @@ public class MesaController {
 
     @PostMapping("/{numeroMesa}/{garcomId}")
     public ResponseEntity<Mesa> atribuirGarcom(@PathVariable Long numeroMesa, @PathVariable Long garcomId) {
-        Mesa mesaAtualizada = mesaService.atribuirGarcom(numeroMesa, garcomId);
-        return ResponseEntity.ok(mesaAtualizada);
+        return ResponseEntity.ok(mesaService.atribuirGarcom(numeroMesa, garcomId));
     }
 }
