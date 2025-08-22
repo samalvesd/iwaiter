@@ -3,7 +3,9 @@ package app.iwaiter.services;
 import app.iwaiter.dto.GarcomDto;
 import app.iwaiter.entities.Garcom;
 import app.iwaiter.repositories.GarcomRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,8 +17,27 @@ public class GarcomService {
     @Autowired
     private GarcomRepository garcomRepository;
 
-    public Garcom criarGarcom(Garcom garcom) {
-        return garcomRepository.save(garcom);
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Transactional
+    public GarcomDto criarGarcom(final GarcomDto input) {
+        return getGarcomDto(input);
+    }
+
+    private GarcomDto getGarcomDto(GarcomDto input) {
+        boolean usuarioJaCadastrado = garcomRepository.findByUsuario(input.getUsuario()).isPresent();
+        if (usuarioJaCadastrado)
+            throw new IllegalArgumentException("Nome de usuário indisponível. Informe outro usuário.");
+
+        garcomRepository.save(new Garcom(
+                input.getNome(),
+                input.getFotoPerfil(),
+                input.getUsuario(),
+                passwordEncoder.encode(input.getSenha()),
+                input.getCpf()));
+
+        return input;
     }
 
     public List<GarcomDto> listaGarcons() {
@@ -24,7 +45,10 @@ public class GarcomService {
                 cada -> new GarcomDto(
                         cada.getId(),
                         cada.getNome(),
-                        cada.getFotoPerfil()
+                        cada.getFotoPerfil(),
+                        cada.getUsuario(),
+                        cada.getSenha(),
+                        cada.getCpf()
                 )
         ).collect(Collectors.toList());
     }

@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 public class Mesa {
     @Id
     private Long numero;
+
     private Long capacidade;
     private Boolean disponivel;
 

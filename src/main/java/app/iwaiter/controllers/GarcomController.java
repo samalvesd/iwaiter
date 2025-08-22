@@ -1,7 +1,6 @@
 package app.iwaiter.controllers;
 
 import app.iwaiter.dto.GarcomDto;
-import app.iwaiter.entities.Garcom;
 import app.iwaiter.services.GarcomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,7 +17,7 @@ public class GarcomController {
     private GarcomService garcomService;
 
     @PostMapping
-    public ResponseEntity<Garcom> criarGarcom(@RequestBody Garcom input) {
+    public ResponseEntity<GarcomDto> criarGarcom(@RequestBody GarcomDto input) {
         return ResponseEntity.status(HttpStatus.CREATED).body(garcomService.criarGarcom(input));
     }
 

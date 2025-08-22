@@ -18,8 +18,8 @@ public class MesaService {
     @Autowired
     private GarcomRepository garcomRepository;
 
-    public List<Mesa> listaMesas() {
-        return mesaRepository.findAll();
+    public Mesa criarMesa() {
+        return null;
     }
 
     public Mesa atribuirGarcom(Long numeroMesa, Long garcomId) {
@@ -31,5 +31,9 @@ public class MesaService {
 
         mesa.setGarcomResponsavel(garcom);
         return mesaRepository.save(mesa);
+    }
+
+    public List<Mesa> listaMesas() {
+        return mesaRepository.findAll();
     }
 }
