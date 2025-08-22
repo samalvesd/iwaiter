@@ -1,11 +1,14 @@
 package app.iwaiter.dto;
 
-import app.iwaiter.entities.Garcom;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class GarcomDto {
 
     private String nome;
+
+    @JsonProperty(value = "foto_perfil")
     private String fotoPerfil;
+
     private String usuario;
     private String senha;
     private String cpf;
