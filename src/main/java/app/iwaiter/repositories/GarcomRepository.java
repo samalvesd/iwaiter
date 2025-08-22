@@ -8,5 +8,5 @@ import java.util.Optional;
 
 @Repository
 public interface GarcomRepository extends JpaRepository<Garcom, Long> {
-    Optional<Garcom> findByLogin(String usuario);
+    Optional<Garcom> findByUsuario(String usuario);
 }
