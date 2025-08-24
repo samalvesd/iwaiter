@@ -25,7 +25,7 @@ public class GarcomService {
         return getGarcomDto(input);
     }
 
-    private GarcomDto getGarcomDto(GarcomDto input) {
+    private GarcomDto getGarcomDto(final GarcomDto input) {
         boolean usuarioJaCadastrado = garcomRepository.findByUsuario(input.getUsuario()).isPresent();
         if (usuarioJaCadastrado)
             throw new IllegalArgumentException("Nome de usuário indisponível. Informe outro usuário.");
