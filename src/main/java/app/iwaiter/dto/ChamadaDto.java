@@ -7,8 +7,4 @@ public class ChamadaDto {
     public Long getNumeroMesa() {
         return numeroMesa;
     }
-
-    public void setNumeroMesa(Long numeroMesa) {
-        this.numeroMesa = numeroMesa;
-    }
 }

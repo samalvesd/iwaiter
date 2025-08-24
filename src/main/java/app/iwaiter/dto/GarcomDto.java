@@ -51,24 +51,4 @@ public class GarcomDto {
     public String getCpf() {
         return cpf;
     }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public void setFotoPerfil(String fotoPerfil) {
-        this.fotoPerfil = fotoPerfil;
-    }
-
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
 }
