@@ -1,37 +1,31 @@
 package app.iwaiter.dto;
 
-import org.antlr.v4.runtime.misc.NotNull;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class MesaDto {
+    @JsonProperty(value = "numero_mesa")
+    private Integer numeroMesa;
+    private String status;
+    private Integer capacidade;
 
-    private Long numeroMesa;
-    private Long capacidade;
-    private Boolean disponivel;
-    private String nomeGarcomResponsavel;
-
-    public Long getNumeroMesa() { return numeroMesa; }
-
-    public Long getCapacidade() {
-        return capacidade;
+    public MesaDto() {
     }
 
-    public void setCapacidade(Long capacidade) {
+    public MesaDto(Integer numeroMesa, String status, Integer capacidade) {
+        this.numeroMesa = numeroMesa;
+        this.status = status;
         this.capacidade = capacidade;
     }
 
-    public Boolean getDisponivel() {
-        return disponivel;
+    public Integer getNumeroMesa() {
+        return numeroMesa;
     }
 
-    public void setDisponivel(Boolean disponivel) {
-        this.disponivel = disponivel;
+    public String getStatus() {
+        return status;
     }
 
-    public String getNomeGarcomResponsavel() {
-        return nomeGarcomResponsavel;
-    }
-
-    public void setNomeGarcomResponsavel(String nomeGarcomResponsavel) {
-        this.nomeGarcomResponsavel = nomeGarcomResponsavel;
+    public Integer getCapacidade() {
+        return capacidade;
     }
 }
