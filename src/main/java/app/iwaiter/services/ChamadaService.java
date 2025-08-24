@@ -1,8 +1,10 @@
 package app.iwaiter.services;
 
+import app.iwaiter.dto.ChamadaDto;
 import app.iwaiter.entities.Garcom;
-import app.iwaiter.entities.Mesa;
+import app.iwaiter.repositories.GarcomRepository;
 import app.iwaiter.repositories.MesaRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,10 +14,19 @@ public class ChamadaService {
     @Autowired
     private MesaRepository mesaRepository;
 
-    public Garcom getGarcomResponsavel(Long numeroMesa) {
-        Mesa mesa = mesaRepository.findById(numeroMesa)
-                .orElseThrow(() -> new IllegalArgumentException("Mesa não encontrada."));
-        return mesa.getGarcomResponsavel();
+    @Autowired
+    private GarcomRepository garcomRepository;
+
+    public ChamadaDto chamarGarcom(final ChamadaDto request) {
+        Garcom garcomChamado = garcomRepository.findByUsuario(request.getUsuario()).orElseThrow(
+                RuntimeException::new
+        );
+        return new ChamadaDto(garcomChamado.getNome(), garcomChamado.getFotoPerfil());
+    }
+
+    public Garcom getGarcomResponsavel(ChamadaDto numeroMesa) {
+        return mesaRepository.findById(numeroMesa.getNumeroMesa()).orElseThrow(
+                () -> new EntityNotFoundException("Mesa não encontrada.")).getGarcomResponsavel();
     }
 
 }

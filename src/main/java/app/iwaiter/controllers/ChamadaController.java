@@ -5,6 +5,7 @@ import app.iwaiter.dto.GarcomDto;
 import app.iwaiter.entities.Garcom;
 import app.iwaiter.services.ChamadaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,16 +24,16 @@ public class ChamadaController {
     private SimpMessagingTemplate messagingTemplate;
 
     @PostMapping
-    public ResponseEntity<GarcomDto> chamarGarcom(@RequestBody ChamadaDto request) {
-        Garcom garcom = chamadaService.getGarcomResponsavel(request.getNumeroMesa());
+    public ResponseEntity<ChamadaDto> chamarGarcom(@RequestBody ChamadaDto request) {
+        Garcom garcomResponsavel = chamadaService.getGarcomResponsavel(request);
 
-        if (garcom == null) {
+        if (garcomResponsavel == null) {
             return ResponseEntity.notFound().build();
         }
 
-        messagingTemplate.convertAndSend("/topic/chamadas/" + garcom.getUsuario(),
+        messagingTemplate.convertAndSend("/topic/chamadas/" + garcomResponsavel.getUsuario(),
                 "CHAMADA: Mesa " + request.getNumeroMesa());
 
-        return ResponseEntity.ok(new GarcomDto(garcom.getNome(), garcom.getFotoPerfil()));
+        return ResponseEntity.status(HttpStatus.OK).body(chamadaService.chamarGarcom(request));
     }
 }
