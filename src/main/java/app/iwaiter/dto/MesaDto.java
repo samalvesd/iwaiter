@@ -7,14 +7,20 @@ public class MesaDto {
     private Integer numeroMesa;
     private String status;
     private Integer capacidade;
-
+    @JsonProperty(value = "garcom_responsavel")
+    private String garcomResponsavelNome;
     public MesaDto() {
     }
 
-    public MesaDto(Integer numeroMesa, String status, Integer capacidade) {
+    public String getGarcomResponsavelNome() {
+        return garcomResponsavelNome;
+    }
+
+    public MesaDto(Integer numeroMesa, String status, Integer capacidade, String garcomResponsavelNome) {
         this.numeroMesa = numeroMesa;
         this.status = status;
         this.capacidade = capacidade;
+        this.garcomResponsavelNome = garcomResponsavelNome;
     }
 
     public Integer getNumeroMesa() {
