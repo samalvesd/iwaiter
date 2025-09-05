@@ -33,7 +33,13 @@ public class MesaService {
                 mesaDto.getCapacidade(),
                 MesaStatus.valueOf(mesaDto.getStatus().toUpperCase())
         ));
-        return new MesaDto(mesaDto.getNumeroMesa(), mesaDto.getStatus(), mesaDto.getCapacidade(), mesaDto.getGarcomResponsavelNome());
+        return new MesaDto(
+                mesaDto.getNumeroMesa(),
+                mesaDto.getStatus(),
+                mesaDto.getCapacidade(),
+                mesaDto.getGarcomResponsavelNome(),
+                mesaDto.getGarcomResponsavelId()
+        );
     }
 
     @Transactional
@@ -52,8 +58,10 @@ public class MesaService {
         return mesaRepository.findAll().stream().map(
                 cada -> {
                     String nomeGarcom = null;
+                    Long idGarcom = null;
                     if (cada.getGarcomResponsavel() != null) {
                         nomeGarcom = cada.getGarcomResponsavel().getNome();
+                        idGarcom = cada.getGarcomResponsavel().getId();
                     } else {
                         nomeGarcom = "Nenhum Garçom atribuído.";
                     }
@@ -61,7 +69,8 @@ public class MesaService {
                             cada.getNumeroMesa(),
                             cada.getStatus().name(),
                             cada.getCapacidade(),
-                            nomeGarcom
+                            nomeGarcom,
+                            idGarcom
                     );
                 }
         ).collect(Collectors.toList());

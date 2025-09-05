@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class GarcomDto {
 
+    private Long id;
     private String nome;
 
     @JsonProperty(value = "foto_perfil")
@@ -22,6 +23,7 @@ public class GarcomDto {
     }
 
     public GarcomDto(Long id, String nome, String fotoPerfil, String usuario, String senha, String cpf) {
+        this.id = id;
         this.nome = nome;
         this.fotoPerfil = fotoPerfil;
         this.usuario = usuario;
@@ -29,7 +31,8 @@ public class GarcomDto {
         this.cpf = cpf;
     }
 
-    public GarcomDto(Long id, String nome, String usuario) {
+    public Long getId() {
+        return id;
     }
 
     public String getNome() {
