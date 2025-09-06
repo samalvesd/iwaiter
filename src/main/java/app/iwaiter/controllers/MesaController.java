@@ -31,4 +31,10 @@ public class MesaController {
     public ResponseEntity<MesaDto> criarMesa(@RequestBody MesaDto mesaDto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(mesaService.criarMesa(mesaDto));
     }
+
+    @DeleteMapping("/{numeroMesa}")
+    public ResponseEntity<Void> excluirMesa(@PathVariable Integer numeroMesa) {
+        mesaService.excluirMesa(numeroMesa);
+        return ResponseEntity.noContent().build();
+    }
 }

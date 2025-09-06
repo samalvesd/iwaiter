@@ -9,6 +9,7 @@ import app.iwaiter.repositories.MesaRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.DeleteMapping;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -52,6 +53,14 @@ public class MesaService {
 
         mesa.setGarcomResponsavel(garcom);
         return mesaRepository.save(mesa);
+    }
+
+    @Transactional
+    public void excluirMesa(Integer numeroMesa) {
+        if (!mesaRepository.existsById(numeroMesa)) {
+            throw new IllegalArgumentException("Mesa não encontrada.");
+        }
+        mesaRepository.deleteById(numeroMesa);
     }
 
     public List<MesaDto> listaMesas() {
