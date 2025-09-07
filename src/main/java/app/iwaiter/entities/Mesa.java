@@ -31,16 +31,8 @@ public class Mesa {
         return numeroMesa;
     }
 
-    public void setNumeroMesa(Integer numeroMesa) {
-        this.numeroMesa = numeroMesa;
-    }
-
     public Integer getCapacidade() {
         return capacidade;
-    }
-
-    public void setCapacidade(Integer capacidade) {
-        this.capacidade = capacidade;
     }
 
     public MesaStatus getStatus() {

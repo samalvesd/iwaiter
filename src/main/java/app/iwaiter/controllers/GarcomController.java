@@ -25,4 +25,10 @@ public class GarcomController {
     public ResponseEntity<List<GarcomDto>> listaGarcons() {
         return ResponseEntity.ok().body(garcomService.listaGarcons());
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> excluirGarcom(@PathVariable Long id) {
+        garcomService.excluirGarcom(id);
+        return ResponseEntity.noContent().build();
+    }
 }

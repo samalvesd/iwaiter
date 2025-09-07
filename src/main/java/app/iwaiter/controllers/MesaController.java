@@ -1,7 +1,6 @@
 package app.iwaiter.controllers;
 
 import app.iwaiter.dto.MesaDto;
-import app.iwaiter.entities.Mesa;
 import app.iwaiter.services.MesaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

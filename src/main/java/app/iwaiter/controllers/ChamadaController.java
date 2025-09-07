@@ -1,7 +1,6 @@
 package app.iwaiter.controllers;
 
 import app.iwaiter.dto.ChamadaDto;
-import app.iwaiter.dto.GarcomDto;
 import app.iwaiter.entities.Garcom;
 import app.iwaiter.services.ChamadaService;
 import org.springframework.beans.factory.annotation.Autowired;

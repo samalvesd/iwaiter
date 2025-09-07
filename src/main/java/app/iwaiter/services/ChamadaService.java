@@ -18,10 +18,10 @@ public class ChamadaService {
     private GarcomRepository garcomRepository;
 
     public ChamadaDto chamarGarcom(final ChamadaDto request) {
-        Garcom garcomChamado = garcomRepository.findByUsuario(request.getUsuario()).orElseThrow(
+        Garcom garcomEntityChamado = garcomRepository.findByUsuario(request.getUsuario()).orElseThrow(
                 RuntimeException::new
         );
-        return new ChamadaDto(garcomChamado.getNome(), garcomChamado.getFotoPerfil());
+        return new ChamadaDto(garcomEntityChamado.getNome(), garcomEntityChamado.getFotoPerfil());
     }
 
     public Garcom getGarcomResponsavel(ChamadaDto numeroMesa) {

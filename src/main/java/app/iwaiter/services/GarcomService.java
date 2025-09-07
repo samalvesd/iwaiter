@@ -52,4 +52,11 @@ public class GarcomService {
                 )
         ).collect(Collectors.toList());
     }
+
+    @Transactional
+    public void excluirGarcom(Long id) {
+        if (!garcomRepository.existsById(id))
+            throw new IllegalArgumentException("Garçom não encontrado.");
+        garcomRepository.deleteById(id);
+    }
 }

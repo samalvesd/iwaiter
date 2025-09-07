@@ -5,11 +5,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class ChamadaDto {
 
     private Integer numeroMesa;
-    private String nome;
+    private final String nome;
     private String usuario;
 
     @JsonProperty(value = "foto_perfil")
-    private String fotoPerfil;
+    private final String fotoPerfil;
 
     public ChamadaDto(String nome, String fotoPerfil) {
         this.nome = nome;
