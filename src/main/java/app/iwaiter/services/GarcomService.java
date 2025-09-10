@@ -31,6 +31,7 @@ public class GarcomService {
             throw new IllegalArgumentException("Nome de usuário indisponível. Informe outro usuário.");
 
         garcomRepository.save(new Garcom(
+                input.getId(),
                 input.getNome(),
                 input.getFotoPerfil(),
                 input.getUsuario(),

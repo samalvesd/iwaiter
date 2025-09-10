@@ -23,7 +23,8 @@ public class Garcom {
     public Garcom() {
     }
 
-    public Garcom(String nome, String fotoPerfil, String usuario, String senha, String cpf) {
+    public Garcom(Long id, String nome, String fotoPerfil, String usuario, String senha, String cpf) {
+        this.id = id;
         this.nome = nome;
         this.fotoPerfil = fotoPerfil;
         this.usuario = usuario;
