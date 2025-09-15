@@ -7,10 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/chamada")
@@ -24,7 +23,7 @@ public class ChamadaController {
 
     @PostMapping
     public ResponseEntity<ChamadaDto> chamarGarcom(@RequestBody ChamadaDto request) {
-        Garcom garcomResponsavel = chamadaService.getGarcomResponsavel(request);
+        Garcom garcomResponsavel = chamadaService.getGarcomResponsavel(request.getNumeroMesa());
 
         if (garcomResponsavel == null) {
             return ResponseEntity.notFound().build();
@@ -34,5 +33,15 @@ public class ChamadaController {
                 "CHAMADA: Mesa " + request.getNumeroMesa());
 
         return ResponseEntity.status(HttpStatus.OK).body(chamadaService.chamarGarcom(request));
+    }
+
+    @GetMapping("/garcom/{garcomId}")
+    public ResponseEntity<List<ChamadaDto>> listaChamadas(@PathVariable Long garcomId) {
+        return ResponseEntity.ok().body(chamadaService.listChamadasByGarcom(garcomId));
+    }
+
+    @PutMapping("/{chamadaId}/aceitar")
+    public ResponseEntity<ChamadaDto> aceitarChamada(@PathVariable Long chamadaId) {
+        return ResponseEntity.ok().body(chamadaService.aceitarChamada(chamadaId));
     }
 }
